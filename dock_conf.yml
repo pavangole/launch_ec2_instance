@@ -1,0 +1,33 @@
+- hosts: all
+  tasks:
+
+    - name: Create yum repository for docker
+      yum_repository:
+            name: docker
+            description: Docker yum repo
+            baseurl: https://download.docker.com/linux/centos/7/x86_64/stable/
+            gpgcheck: no
+      become: yes
+    - lineinfile:
+            path: "/etc/yum.conf"
+            regexp: "best="
+            line: "best=False"
+      become: yes
+
+    - package:
+          name: "docker-ce"
+          state: present
+      become: yes
+
+    - lineinfile:
+            path: "/etc/yum.conf"
+            regexp: "best="
+            line: "best=True"
+      become: yes
+
+    - service:
+          name: "docker"
+          state: started
+          enabled: yes
+      become: yes
+
