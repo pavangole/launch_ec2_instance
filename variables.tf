@@ -32,7 +32,7 @@ variable "ssh_key_name" {
 variable "storage_size" {
     description = "Give Root Storage Size"
     type = number
-    default = 10
+    default = 11
 }  
 
 variable "instance_name" {
