@@ -71,17 +71,17 @@ resource "null_resource" "name" {
     command = "echo '${tls_private_key.pk.private_key_pem}' > ./promkey1.pem"
     }
 
-    provisioner "local-exec" { # Create a "myKey.pem" to your computer!!
-    command = "chmod 400 promkey1.pem"
-    }
+    # provisioner "local-exec" { # Create a "myKey.pem" to your computer!!
+    # command = "chmod 400 promkey1.pem"
+    # }
 
-    provisioner "local-exec" { # Create a "myKey.pem" to your computer!!
-    command = "sleep 180"
-    }
+    # provisioner "local-exec" { # Create a "myKey.pem" to your computer!!
+    # command = "sleep 180"
+    # }
 
-    provisioner "local-exec" {
-    command = "ansible-playbook -u ec2-user --private-key promkey1.pem ~/workspace/ansible/playbooks/dock_conf.yml"
-    }
+    # provisioner "local-exec" {
+    # command = "ansible-playbook -u ec2-user --private-key promkey1.pem ~/workspace/ansible/playbooks/dock_conf.yml"
+    # }
 
   
 }
